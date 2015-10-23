@@ -34,8 +34,11 @@ object HiveSpark {
     import hiveContext.sql
 
 
+    val count = sql("SELECT COUNT(*) FROM BXDataSet").collect().head.getLong(0)
+    println(s"COUNT(*): $count")
     // Here you have to complete the query :
     val YearCount=hiveContext.sql("from bxdataset SELECT yearofpublication, count(booktitle) group by yearofpublication order by yearofpublication").collect().foreach(println)
+
 
 
     sc.stop()
